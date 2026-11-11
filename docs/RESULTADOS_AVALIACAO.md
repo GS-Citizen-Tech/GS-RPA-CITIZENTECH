@@ -10,27 +10,27 @@
 
 | Categoria | Precisão | Recall | F1 | Amostras |
 |---|---|---|---|---|
-| alagamento | 1.00 | 0.53 | 0.70 | 15 |
-| arvore_poda_queda | 0.67 | 0.13 | 0.22 | 15 |
-| arvore_sobre_fiacao | 0.64 | 0.93 | 0.76 | 15 |
-| boca_de_lobo_entupida | 1.00 | 0.73 | 0.85 | 15 |
-| buraco_via | 1.00 | 0.93 | 0.97 | 15 |
-| calcada_quebrada | 0.68 | 1.00 | 0.81 | 15 |
-| cheiro_gas | 1.00 | 1.00 | 1.00 | 15 |
-| coleta_nao_realizada | 0.94 | 1.00 | 0.97 | 15 |
-| descarte_irregular | 0.94 | 1.00 | 0.97 | 15 |
-| esgoto | 1.00 | 0.73 | 0.85 | 15 |
-| fiacao_telecom_solta | 0.93 | 0.87 | 0.90 | 15 |
-| fio_energia_caido | 0.88 | 1.00 | 0.94 | 15 |
-| iluminacao_publica | 0.67 | 0.93 | 0.78 | 15 |
-| lixeira_publica | 1.00 | 0.80 | 0.89 | 15 |
-| lixo_acumulado | 0.80 | 0.80 | 0.80 | 15 |
-| poste_danificado | 1.00 | 0.60 | 0.75 | 15 |
-| semaforo_defeito | 1.00 | 1.00 | 1.00 | 15 |
-| varricao | 1.00 | 1.00 | 1.00 | 15 |
-| vazamento_agua | 0.68 | 1.00 | 0.81 | 15 |
-| veiculo_abandonado | 0.64 | 0.93 | 0.76 | 15 |
-| **média (macro)** | **0.87** | **0.85** | **0.83** | 300 |
+| alagamento | 1,00 | 0,53 | 0,70 | 15 |
+| arvore_poda_queda | 0,67 | 0,13 | 0,22 | 15 |
+| arvore_sobre_fiacao | 0,64 | 0,93 | 0,76 | 15 |
+| boca_de_lobo_entupida | 1,00 | 0,73 | 0,85 | 15 |
+| buraco_via | 1,00 | 0,93 | 0,97 | 15 |
+| calcada_quebrada | 0,68 | 1,00 | 0,81 | 15 |
+| cheiro_gas | 1,00 | 1,00 | 1,00 | 15 |
+| coleta_nao_realizada | 0,94 | 1,00 | 0,97 | 15 |
+| descarte_irregular | 0,94 | 1,00 | 0,97 | 15 |
+| esgoto | 1,00 | 0,73 | 0,85 | 15 |
+| fiacao_telecom_solta | 0,93 | 0,87 | 0,90 | 15 |
+| fio_energia_caido | 0,88 | 1,00 | 0,94 | 15 |
+| iluminacao_publica | 0,67 | 0,93 | 0,78 | 15 |
+| lixeira_publica | 1,00 | 0,80 | 0,89 | 15 |
+| lixo_acumulado | 0,80 | 0,80 | 0,80 | 15 |
+| poste_danificado | 1,00 | 0,60 | 0,75 | 15 |
+| semaforo_defeito | 1,00 | 1,00 | 1,00 | 15 |
+| varricao | 1,00 | 1,00 | 1,00 | 15 |
+| vazamento_agua | 0,68 | 1,00 | 0,81 | 15 |
+| veiculo_abandonado | 0,64 | 0,93 | 0,76 | 15 |
+| **média (macro)** | **0,87** | **0,85** | **0,83** | 300 |
 
 ### Limiar de confiança x % automatizado x acerto
 
@@ -38,12 +38,12 @@ Se o robô só aceitasse a categoria da IA acima do limiar (o resto iria para re
 
 | Limiar | % automatizado | Acerto do que foi automatizado | Erros que passariam |
 |---|---|---|---|
-| 0.00 | 100,0% | 84,7% | 46 |
-| 0.30 | 89,7% | 87,4% | 34 |
-| 0.40 **(usado)** | 82,7% | 87,9% | 30 |
-| 0.50 | 73,7% | 89,1% | 24 |
-| 0.60 | 67,0% | 91,0% | 18 |
-| 0.70 | 55,0% | 96,4% | 6 |
+| 0,00 | 100,0% | 84,7% | 46 |
+| 0,30 | 89,7% | 87,4% | 34 |
+| 0,40 **(usado)** | 82,7% | 87,9% | 30 |
+| 0,50 | 73,7% | 89,1% | 24 |
+| 0,60 | 67,0% | 91,0% | 18 |
+| 0,70 | 55,0% | 96,4% | 6 |
 
 ### Análise dos erros
 
@@ -112,11 +112,11 @@ Mesma regra de decisão com outros limiares (válidas + categoria errada; invál
 
 | Limiar | Válidas enviadas | Categoria errada enviada (erro grave) |
 |---|---|---|
-| 0.00 | 47/60 (78,3%) | 0/10 |
-| 0.30 | 43/60 (71,7%) | 0/10 |
-| 0.40 **(usado)** | 40/60 (66,7%) | 0/10 |
-| 0.50 | 35/60 (58,3%) | 0/10 |
-| 0.60 | 34/60 (56,7%) | 0/10 |
+| 0,00 | 47/60 (78,3%) | 0/10 |
+| 0,30 | 43/60 (71,7%) | 0/10 |
+| 0,40 **(usado)** | 40/60 (66,7%) | 0/10 |
+| 0,50 | 35/60 (58,3%) | 0/10 |
+| 0,60 | 34/60 (56,7%) | 0/10 |
 
 ## 4. Etiquetagem dos trechos raspados (metadado do RAG)
 

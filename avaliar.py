@@ -34,6 +34,7 @@ cfg = Config()
 log = configurar_logger(cfg.dir_logs, nome="avaliar")
 out = []
 pct = lambda x: f"{x:.1%}".replace(".", ",")
+dec = lambda x: f"{x:.2f}".replace(".", ",")
 
 PARES_EXPLICADOS = {
     frozenset({"arvore_poda_queda", "arvore_sobre_fiacao"}): "as duas falam de árvore e galho; só a menção a fio/cabo separa",
@@ -72,10 +73,10 @@ out += ["# Resultados da avaliação", "",
         f"- **Acurácia geral: {pct(acertou.mean())}** ({acertou.sum()}/{n} acertos).", ""]
 rep = classification_report(teste["categoria"], teste["previsto"], output_dict=True, zero_division=0)
 out += ["| Categoria | Precisão | Recall | F1 | Amostras |", "|---|---|---|---|---|"]
-out += [f"| {c} | {v['precision']:.2f} | {v['recall']:.2f} | {v['f1-score']:.2f} | {int(v['support'])} |"
+out += [f"| {c} | {dec(v['precision'])} | {dec(v['recall'])} | {dec(v['f1-score'])} | {int(v['support'])} |"
         for c, v in rep.items() if c not in ("accuracy", "macro avg", "weighted avg")]
 m = rep["macro avg"]
-out += [f"| **média (macro)** | **{m['precision']:.2f}** | **{m['recall']:.2f}** | **{m['f1-score']:.2f}** | {n} |"]
+out += [f"| **média (macro)** | **{dec(m['precision'])}** | **{dec(m['recall'])}** | **{dec(m['f1-score'])}** | {n} |"]
 
 out += ["", "### Limiar de confiança x % automatizado x acerto", "",
         "Se o robô só aceitasse a categoria da IA acima do limiar (o resto iria para revisão humana):", "",
@@ -83,7 +84,7 @@ out += ["", "### Limiar de confiança x % automatizado x acerto", "",
 for lim in [0.0, 0.30, 0.40, 0.50, 0.60, 0.70]:
     auto = teste["confianca"] >= lim
     marca = " **(usado)**" if abs(lim - cfg.limiar_confianca) < 1e-9 else ""
-    out.append(f"| {lim:.2f}{marca} | {pct(auto.mean())} | {pct(acertou[auto].mean()) if auto.any() else '-'} | "
+    out.append(f"| {dec(lim)}{marca} | {pct(auto.mean())} | {pct(acertou[auto].mean()) if auto.any() else '-'} | "
                f"{(~acertou[auto]).sum()} |")
 
 erros = teste[~acertou]
@@ -170,8 +171,8 @@ with SMTPLocal(dir_e2e / "caixa_teste", "localhost", 1026) as smtp, MockAPI(c2.a
     rel2, enc2, _ = rodar_encaminhamento(api.url)  # reexecução: deve enviar 0
     recebidos_2 = smtp.recebidos - recebidos_1
 
-dec = pd.DataFrame(enc1.decisoes, columns=["id", "decisao", "detalhe"])
-mm = gab.merge(dec, on="id", how="left")
+decisoes = pd.DataFrame(enc1.decisoes, columns=["id", "decisao", "detalhe"])
+mm = gab.merge(decisoes, on="id", how="left")
 mm["decisao"] = mm["decisao"].fillna("nao_listada")
 sqlite = RepositorioSQLite(c2.arquivo_db)
 mm["status_final"] = [sqlite.status_de(i) for i in mm["id"]]
@@ -227,7 +228,7 @@ for lim in [0.0, 0.30, 0.40, 0.50, 0.60]:
     envia = (avaliaveis["ia"] == avaliaveis["categoria_final"]) & (avaliaveis["conf"] >= lim)
     ok = avaliaveis["decisao_esperada"] == "enviar"
     marca = " **(usado)**" if abs(lim - cfg.limiar_confianca) < 1e-9 else ""
-    out.append(f"| {lim:.2f}{marca} | {(envia & ok).sum()}/{ok.sum()} ({pct((envia & ok).sum() / ok.sum())}) | "
+    out.append(f"| {dec(lim)}{marca} | {(envia & ok).sum()}/{ok.sum()} ({pct((envia & ok).sum() / ok.sum())}) | "
                f"{(envia & ~ok).sum()}/{(~ok).sum()} |")
 
 # =============================================================================================

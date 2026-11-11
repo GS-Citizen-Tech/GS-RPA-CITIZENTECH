@@ -95,8 +95,13 @@ def etapa_encaminhar(cfg, log, smtp_local=False):
     repo = obter_repositorio(cfg, log, rel)
     rel.extras["fonte_das_ocorrencias"] = repo.nome
     enc = Encaminhador(cfg, log, rel, base, carregar_classificador(cfg, rel), repo, EnviadorEmail(cfg, log))
+    from src.smtp_local import HOSTS_LOCAIS, SMTPLocal, smtp_escutando
+    if (not smtp_local and cfg.smtp_auto_local and cfg.smtp_host in HOSTS_LOCAIS
+            and not smtp_escutando(cfg.smtp_host, cfg.smtp_porta)):
+        rel.aviso(f"Nenhum SMTP escutando em {cfg.smtp_host}:{cfg.smtp_porta}: subindo o SMTP de teste "
+                  "embutido (e-mails gravados em output/caixa_teste/). Para desligar: SMTP_AUTO_LOCAL=false.")
+        smtp_local = True
     if smtp_local:
-        from src.smtp_local import SMTPLocal
         with SMTPLocal(cfg.dir_saida / "caixa_teste", cfg.smtp_host, cfg.smtp_porta):
             log.info(f"SMTP de teste embutido ativo em {cfg.smtp_host}:{cfg.smtp_porta}")
             enc.executar()

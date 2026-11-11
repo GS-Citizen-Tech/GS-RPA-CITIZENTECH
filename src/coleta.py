@@ -132,7 +132,7 @@ class Coletor:
         secoes, atual = [], None
         for l in linhas:
             if l.upper() in SECOES_SP156:
-                atual = {"secao": l.title(), "linhas": []}
+                atual = {"secao": l.capitalize(), "linhas": []}  # "O QUE É" -> "O que é"
                 secoes.append(atual)
             elif atual:
                 atual["linhas"].append(l)

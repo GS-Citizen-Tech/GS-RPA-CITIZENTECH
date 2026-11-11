@@ -70,6 +70,8 @@ class Config:
         self.smtp_starttls = _bool("SMTP_STARTTLS", False)
         self.smtp_timeout = float(os.getenv("SMTP_TIMEOUT", "10"))
         self.email_remetente = os.getenv("EMAIL_REMETENTE", "robo@quemresolve.local")
+        # Se o SMTP for local e ninguém estiver escutando, sobe o SMTP de teste embutido sozinho
+        self.smtp_auto_local = _bool("SMTP_AUTO_LOCAL", True)
         # Trava de segurança: o robô só envia para domínios de teste
         self.dominios_permitidos = _lista("DOMINIOS_DESTINO_PERMITIDOS", "caixa-teste.local")
 

@@ -3,7 +3,19 @@
 Equivale a `python -m aiosmtpd -n -l localhost:1025`, mas grava cada e-mail recebido como .eml
 numa "caixa de teste" (pasta), o que serve de evidência do envio. Nada sai da máquina.
 """
+import socket
 from datetime import datetime
+
+HOSTS_LOCAIS = {"localhost", "127.0.0.1", "::1"}
+
+
+def smtp_escutando(host, porta, timeout=1.0):
+    """True se já existe um servidor aceitando conexões em host:porta."""
+    try:
+        with socket.create_connection((host, porta), timeout=timeout):
+            return True
+    except OSError:
+        return False
 
 
 class _GravarEmPasta:

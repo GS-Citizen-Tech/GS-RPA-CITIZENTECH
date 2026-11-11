@@ -29,7 +29,8 @@ def preparar(nome, **extra):
     (base / "data" / "snapshots").mkdir(parents=True)
     shutil.copy(PRINCIPAL.arquivo_base, base / "data" / "base_quem_resolve.json")
     cfg = Config(base=base, backoff_segundos=0.1, atraso_requisicoes=0, timeout_http=3, smtp_timeout=3,
-                 max_falhas_seguidas=2, caminho_modelo=PRINCIPAL.caminho_modelo, smtp_porta=PORTA_SMTP, **extra)
+                 max_falhas_seguidas=2, caminho_modelo=PRINCIPAL.caminho_modelo, smtp_porta=PORTA_SMTP,
+                 smtp_auto_local=False, **extra)  # aqui o SMTP fora do ar é proposital
     cfg.criar_pastas()
     return cfg, configurar_logger(cfg.dir_logs, nome=f"demo_{nome}")
 

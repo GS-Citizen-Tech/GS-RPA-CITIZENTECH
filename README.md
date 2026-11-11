@@ -54,25 +54,21 @@ Requisito: Python 3.10 ou superior.
 pip install -r requirements.txt
 ```
 
-**1. Suba o servidor SMTP local de teste** num terminal separado e deixe-o aberto. Ele mostra cada e-mail recebido e nada sai da máquina:
-
-```bash
-python -m aiosmtpd -n -l localhost:1025
-```
-
-**2. Rode o robô de ponta a ponta** em outro terminal (ponto de entrada único):
+**1. Rode o robô de ponta a ponta** (ponto de entrada único):
 
 ```bash
 python main.py tudo
 ```
 
-`tudo` executa `gerar` → `treinar` → `coletar` → `encaminhar`. Cada etapa também pode rodar sozinha (`python main.py coletar`, por exemplo). Se você não quiser abrir o segundo terminal, use o SMTP embutido, que grava os e-mails em `output/caixa_teste/`:
+`tudo` executa `gerar` → `treinar` → `coletar` → `encaminhar`. Cada etapa também pode rodar sozinha (`python main.py coletar`, por exemplo). Não é preciso subir nada antes: se nenhum servidor SMTP estiver escutando em `localhost:1025`, o robô sobe sozinho um SMTP de teste embutido, avisa no log e grava os e-mails em `output/caixa_teste/`. Nada sai da máquina.
+
+Opcional: para ver cada e-mail chegando na tela, suba antes o servidor de teste num terminal separado e deixe-o aberto. O robô passa a usá-lo:
 
 ```bash
-python main.py tudo --smtp-local
+python -m aiosmtpd -n -l localhost:1025
 ```
 
-**3. Gere as evidências:**
+**2. Gere as evidências:**
 
 ```bash
 python avaliar.py
@@ -87,7 +83,7 @@ python demo_falhas.py
 | Opção | Efeito |
 |---|---|
 | `--offline` | `coletar` usa só os snapshots de `data/snapshots/`, sem acessar a internet |
-| `--smtp-local` | sobe um SMTP de teste embutido em `localhost:1025` durante a execução |
+| `--smtp-local` | força o SMTP de teste embutido em `localhost:1025`, mesmo que outro servidor esteja escutando |
 
 **Para recomeçar do zero**, apague `state/`, `output/`, `logs/`, `modelos/` e `data/quem_resolve.db`. Rodar de novo **sem** apagar não reenvia nada (idempotência): `gerar` não duplica ocorrências e `encaminhar` não reenvia e-mails.
 
@@ -112,6 +108,7 @@ cp .env.example .env
 | `API_BASE_URL`, `API_TOKEN` | API do Quem Resolve?. Vazio = usa o SQLite local |
 | `SMTP_HOST`, `SMTP_PORTA`, `SMTP_USUARIO`, `SMTP_SENHA`, `SMTP_STARTTLS` | servidor de e-mail. Opcional: Mailtrap ou Ethereal (o exemplo está no `.env.example`) |
 | `DOMINIOS_DESTINO_PERMITIDOS` | trava de segurança: o robô só envia para estes domínios (padrão `caixa-teste.local`) |
+| `SMTP_AUTO_LOCAL` | `true` (padrão) sobe o SMTP embutido quando não há servidor local escutando; `false` deixa o envio falhar com segurança |
 | `LIMIAR_CONFIANCA`, `TENTATIVAS`, `BACKOFF_SEGUNDOS`, `TIMEOUT_HTTP`... | ajustes do robô |
 
 O `.env` está no `.gitignore` e **nunca** vai para o repositório. Os destinatários são sempre fictícios (`enel@caixa-teste.local`, `sabesp@caixa-teste.local`...), nunca e-mails reais de órgãos.
@@ -162,25 +159,22 @@ logs/, state/, modelos/    log, registro de idempotência, modelo treinado (gera
 | Evidências de validação | [`docs/RESULTADOS_AVALIACAO.md`](docs/RESULTADOS_AVALIACAO.md) e [`docs/EVIDENCIAS_FALHAS.md`](docs/EVIDENCIAS_FALHAS.md) |
 | Proteção de dados, ética e ODS | [`docs/ETICA_ODS.md`](docs/ETICA_ODS.md) |
 
-## Resultados medidos (dados sintéticos; detalhes em `docs/`)
+## Resultados
 
-Execução do zero em 10/11/2026:
+Os números ficam só nos documentos gerados pelos scripts, para nunca ficarem desatualizados aqui:
 
-- **Coleta:** 11 de 11 páginas oficiais coletadas online, resultando em 98 trechos para o RAG. O SP156 não publica robots.txt (HTTP 404) e o robots.txt da prefeitura.sp.gov.br não tem restrições.
-- **Classificador** (300 frases de teste, 20 categorias, modelos de frase diferentes dos de treino): **acurácia de 84,7%** (254/300), F1 macro de 0,83. As piores categorias são `arvore_poda_queda` (recall de 0,13, confundida com `arvore_sobre_fiacao`), `alagamento` (0,53) e `poste_danificado` (0,60). Com o limiar de 40%, 82,7% dos casos ficam acima do limiar, com 87,9% de acerto.
-- **Encaminhamento ponta a ponta** (80 ocorrências, via API simulada):
-  - **0 envios errados**, porque as 10 ocorrências com categoria errada e as 6 inválidas foram todas barradas na revisão humana;
-  - 40 das 60 válidas foram enviadas automaticamente (66,7%), **40/40 para o responsável correto**; as outras 20 foram para revisão por divergência ou confiança baixa da IA;
-  - as 4 já enviadas foram ignoradas;
-  - a reexecução enviou 0 e-mails.
-- **Anonimização:** 260/260 dados pessoais fictícios mascarados (100%) e 0 dados pessoais nos e-mails enviados.
-- **Etiquetagem dos trechos raspados:** 25/30 corretos (83,3%) na amostra rotulada. Os rótulos ainda são um rascunho a conferir.
-- **Falhas:** 8 cenários provocados (site fora, snapshot ausente, arquivos e estado corrompidos, base corrompida, dados inválidos, API fora, SMTP fora, reexecução com falha no PATCH). Em todos o robô registrou no log, seguiu um caminho seguro e terminou a execução.
+- [`docs/RESULTADOS_AVALIACAO.md`](docs/RESULTADOS_AVALIACAO.md), gerado por `avaliar.py`:
+  - acurácia, precisão, recall e F1 por categoria no conjunto de teste rotulado;
+  - tabela de limiar de confiança x % automatizado x acerto;
+  - análise dos erros e taxa de mascaramento de dados pessoais;
+  - encaminhamento ponta a ponta comparado com o gabarito, incluindo envios errados, responsável correto e reexecução;
+  - etiquetagem dos trechos raspados na amostra rotulada.
+- [`docs/EVIDENCIAS_FALHAS.md`](docs/EVIDENCIAS_FALHAS.md), gerado por `demo_falhas.py`: 8 falhas provocadas (site fora, snapshot ausente, arquivos e estado corrompidos, base corrompida, dados inválidos, API fora, SMTP fora, reexecução com falha no PATCH), com o log e o estado antes e depois.
 
 ## Limites conhecidos
 
 - **Dados sintéticos.** Com texto real a acurácia tende a ser menor. O modelo deve ser retreinado com ocorrências reais anonimizadas.
-- **Automação conservadora:** 1 em cada 3 ocorrências corretas vai para a revisão humana. É o preço de não enviar nada para o órgão errado. O limiar pode ser ajustado em `.env` (a troca está medida em `RESULTADOS_AVALIACAO.md`).
+- **Automação conservadora:** parte das ocorrências corretas vai para a revisão humana (veja a taxa medida em `RESULTADOS_AVALIACAO.md`). É o preço de não enviar nada para o órgão errado. O limiar pode ser ajustado em `.env` (a troca está medida em `RESULTADOS_AVALIACAO.md`).
 - **Fontes curadas.** A busca e as listas do SP156 dependem de JavaScript, então a coleta usa URLs de serviço curadas em `data/fontes.json`. Se o site mudar o HTML, a extração falha de forma controlada e o robô usa o snapshot.
 - **Base sem validação oficial completa.** 12 das 20 regras da base estão "a validar" (sem `fonte_url` oficial).
 - **Anonimização por regras.** Não detecta nome solto, sem gatilho como "meu nome é".

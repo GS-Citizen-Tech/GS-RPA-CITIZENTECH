@@ -1,7 +1,22 @@
 """Tema: resiliência -> retry com espera exponencial e circuit breaker, reaproveitados por
 scraping, API e SMTP. Nenhuma falha previsível derruba o robô: quem chama decide o caminho seguro.
 """
+import re
 import time
+
+
+def resumo_erro(e):
+    """Mensagem curta e legível para o log (sem o texto interno gigante das bibliotecas)."""
+    texto = str(e)
+    causa = re.search(r"Caused by (\w+)", texto)
+    if causa:
+        return f"{type(e).__name__} ({causa.group(1)})"
+    if isinstance(e, ConnectionRefusedError):
+        return "ConnectionRefusedError (conexão recusada: nada escutando na porta)"
+    if isinstance(e, TimeoutError):
+        return "TimeoutError (tempo de espera esgotado)"
+    texto = texto.split(" for url")[0]
+    return f"{type(e).__name__}: {texto[:100]}" if texto else type(e).__name__
 
 
 class CircuitoAberto(Exception):
@@ -50,12 +65,11 @@ def com_retry(func, *, tentativas, backoff, logger, descricao, erros=(Exception,
             return resultado
         except erros as e:
             ultimo = e
-            logger.warning(f"{descricao}: falhou (tentativa {n}/{tentativas}): {type(e).__name__}: "
-                           f"{str(e)[:150]}")
+            logger.warning(f"{descricao}: falhou (tentativa {n}/{tentativas}): {resumo_erro(e)}")
             if n < tentativas:
                 espera = backoff * (2 ** (n - 1))
                 logger.info(f"{descricao}: aguardando {espera:.1f}s antes de tentar de novo")
                 time.sleep(espera)
     if breaker:
         breaker.falha()
-    raise FalhaPersistente(f"{descricao}: {type(ultimo).__name__}: {ultimo}") from ultimo
+    raise FalhaPersistente(f"{descricao}: {resumo_erro(ultimo)}") from ultimo
