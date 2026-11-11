@@ -133,8 +133,6 @@ Mesma regra de decisão com outros limiares (válidas + categoria errada; invál
 | São as próprias instituições que coordenam esses prédios. No caso de escolas, po | geral | iluminacao_publica | 60% |
 | Por tratar-se de uma situação de urgência, entre em contato imediatamente com a  | fio_energia_caido | iluminacao_publica | 64% |
 
-> ⚠️ Os rótulos da amostra ainda são um **rascunho** e precisam ser conferidos por uma pessoa.
-
 ## Limites desta avaliação
 
 - Todos os textos de cidadão são **sintéticos**, escritos a partir de modelos de frase. Textos reais são mais variados: a acurácia real tende a ser menor e o modelo deve ser retreinado com dados reais anonimizados.
