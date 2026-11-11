@@ -218,3 +218,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---------- Projeto Quem Resolve? (RPA) ----------
+.env
+logs/
+state/
+output/
+modelos/
+data/quem_resolve.db
+data/*.tmp
+avaliacao_execucao/
+demo_falhas_execucao/
+*.zip
+*.pdf

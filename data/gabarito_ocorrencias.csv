@@ -1,0 +1,81 @@
+id,categoria_real,categoria_final,decisao_esperada,responsavel_esperado,observacao
+e3fdb2b2-801d-4914-a503-541695f26d70,buraco_via,buraco_via,enviar,subprefeitura,"válida, categoria correta"
+af970ede-a81b-4b51-a756-9ff0de564f7d,buraco_via,buraco_via,enviar,subprefeitura,"válida, categoria correta"
+f2b40cfd-9007-470b-8c02-9c52c4503d12,buraco_via,buraco_via,enviar,subprefeitura,"válida, categoria correta"
+80166230-eaa4-479a-87dd-96bc7c59174d,iluminacao_publica,iluminacao_publica,enviar,prefeitura,"válida, categoria correta"
+963f586b-06a7-4685-9a00-9307557c6b9c,iluminacao_publica,iluminacao_publica,enviar,prefeitura,"válida, categoria correta"
+9d3966d2-c2c9-442d-8b2a-e911dd401e38,iluminacao_publica,iluminacao_publica,enviar,prefeitura,"válida, categoria correta"
+8d751595-fb54-404f-ad4b-fe705a4b64d8,fio_energia_caido,fio_energia_caido,enviar,enel,"válida, categoria correta"
+47e35c4f-e7a8-4b56-bc64-39a73fd7c2ce,fio_energia_caido,fio_energia_caido,enviar,enel,"válida, categoria correta"
+9b51bb33-52bd-454e-ada2-462e334496e6,fio_energia_caido,fio_energia_caido,enviar,enel,"válida, categoria correta"
+00793063-80db-49ad-9f1d-e9c2fac28e19,fiacao_telecom_solta,fiacao_telecom_solta,enviar,operadora_telecom,"válida, categoria correta"
+ea5afe1f-aa21-45f8-8afb-fbb671315bec,fiacao_telecom_solta,fiacao_telecom_solta,enviar,operadora_telecom,"válida, categoria correta"
+43745e24-0871-41d9-a0b2-0fba808a08cc,fiacao_telecom_solta,fiacao_telecom_solta,enviar,operadora_telecom,"válida, categoria correta"
+2d1584e4-de62-4188-8e9c-05d2270642f9,poste_danificado,poste_danificado,enviar,enel,"válida, categoria correta"
+19aa2eb2-92f9-4c71-b5a1-67504f15b70a,poste_danificado,poste_danificado,enviar,enel,"válida, categoria correta"
+ab0ace89-39be-47da-9994-70b775879f00,poste_danificado,poste_danificado,enviar,enel,"válida, categoria correta"
+4d2e2230-bd51-477e-95eb-66e362131a9e,vazamento_agua,vazamento_agua,enviar,sabesp,"válida, categoria correta"
+0cc91c83-c461-4ce7-b434-da939e2f6e6a,vazamento_agua,vazamento_agua,enviar,sabesp,"válida, categoria correta"
+e66f68b5-20a1-458a-a1b4-162ad8c20691,vazamento_agua,vazamento_agua,enviar,sabesp,"válida, categoria correta"
+f15f3fc5-baca-4594-b841-dc35c61ef99b,esgoto,esgoto,enviar,sabesp,"válida, categoria correta"
+86aebd66-216d-40de-8635-d9bd23960cb5,esgoto,esgoto,enviar,sabesp,"válida, categoria correta"
+bb61be6d-f45f-4ded-b4bc-a702e73aaaa5,esgoto,esgoto,enviar,sabesp,"válida, categoria correta"
+d3b435eb-b64f-47d6-bf2c-ada2f794a04e,cheiro_gas,cheiro_gas,enviar,comgas,"válida, categoria correta"
+6c0c3977-2b90-43f2-b95b-7adffd7f55eb,cheiro_gas,cheiro_gas,enviar,comgas,"válida, categoria correta"
+5f728677-b47b-46bb-8d3b-73df6438148d,cheiro_gas,cheiro_gas,enviar,comgas,"válida, categoria correta"
+63ac4285-6b1c-49ac-a6c4-144f9816eb73,calcada_quebrada,calcada_quebrada,enviar,proprietario_imovel,"válida, categoria correta"
+bb89e5b3-f7de-4699-97fe-8f08d88dbbc9,calcada_quebrada,calcada_quebrada,enviar,proprietario_imovel,"válida, categoria correta"
+12166855-e5b9-488a-951c-99455ffe21c6,calcada_quebrada,calcada_quebrada,enviar,proprietario_imovel,"válida, categoria correta"
+24fc038c-6581-4d3b-8acd-8522ec59efc4,arvore_poda_queda,arvore_poda_queda,enviar,subprefeitura,"válida, categoria correta"
+9c1eaf1e-39e4-4609-a876-20fba3da1d6e,arvore_poda_queda,arvore_poda_queda,enviar,subprefeitura,"válida, categoria correta"
+353719c2-b282-4669-b06b-0c5e4e253627,arvore_poda_queda,arvore_poda_queda,enviar,subprefeitura,"válida, categoria correta"
+0da2114c-7367-449c-a657-a0a9d99cdbf2,arvore_sobre_fiacao,arvore_sobre_fiacao,enviar,enel,"válida, categoria correta"
+516e47a0-0d6a-4480-9437-211c460dbabb,arvore_sobre_fiacao,arvore_sobre_fiacao,enviar,enel,"válida, categoria correta"
+42c9328a-e05d-49fa-b0a2-294dbb90f388,arvore_sobre_fiacao,arvore_sobre_fiacao,enviar,enel,"válida, categoria correta"
+6a799f97-7f41-4135-8399-8f3d39bd3acb,semaforo_defeito,semaforo_defeito,enviar,cet,"válida, categoria correta"
+f2ac630c-a53c-4731-b1fe-ecc84f0081c8,semaforo_defeito,semaforo_defeito,enviar,cet,"válida, categoria correta"
+74b515cb-ba17-4775-8f62-0aa195a2054a,semaforo_defeito,semaforo_defeito,enviar,cet,"válida, categoria correta"
+5c594067-3297-409c-8afb-3f11633458ff,descarte_irregular,descarte_irregular,enviar,subprefeitura,"válida, categoria correta"
+cf469d58-956b-4c20-92d3-9ae69808cd4f,descarte_irregular,descarte_irregular,enviar,subprefeitura,"válida, categoria correta"
+d9b0f222-c6e8-45c6-a1fa-95f6caf190fc,descarte_irregular,descarte_irregular,enviar,subprefeitura,"válida, categoria correta"
+0e38f100-877a-4e1a-9be3-002fd5d162e2,coleta_nao_realizada,coleta_nao_realizada,enviar,concessionaria_coleta,"válida, categoria correta"
+f6a8cae3-a517-4030-8629-71e19d468a04,coleta_nao_realizada,coleta_nao_realizada,enviar,concessionaria_coleta,"válida, categoria correta"
+bac5019c-3186-434f-ac20-1b5ce57c699d,coleta_nao_realizada,coleta_nao_realizada,enviar,concessionaria_coleta,"válida, categoria correta"
+41385212-25b0-4d5d-abaf-7f304731a60c,lixo_acumulado,lixo_acumulado,enviar,subprefeitura,"válida, categoria correta"
+10be137f-0cd0-4eb1-96f8-c1a10cf777f5,lixo_acumulado,lixo_acumulado,enviar,subprefeitura,"válida, categoria correta"
+17e23a4d-12fa-456f-850b-d245bb2d9625,lixo_acumulado,lixo_acumulado,enviar,subprefeitura,"válida, categoria correta"
+7c8af863-4b91-4ace-9d48-d7aeafe84d52,boca_de_lobo_entupida,boca_de_lobo_entupida,enviar,subprefeitura,"válida, categoria correta"
+fddb14ef-0ee4-42ea-ba1c-212ac0a92920,boca_de_lobo_entupida,boca_de_lobo_entupida,enviar,subprefeitura,"válida, categoria correta"
+f5be3bbc-5186-4787-8643-4ea825993f76,boca_de_lobo_entupida,boca_de_lobo_entupida,enviar,subprefeitura,"válida, categoria correta"
+dbeb0e39-bbe0-44d7-8711-7f03dc2d3710,lixeira_publica,lixeira_publica,enviar,prefeitura,"válida, categoria correta"
+0112a711-9f23-406c-8584-fda893febe56,lixeira_publica,lixeira_publica,enviar,prefeitura,"válida, categoria correta"
+fc53c39f-0ba8-459e-8d57-a79bc92e6f9d,lixeira_publica,lixeira_publica,enviar,prefeitura,"válida, categoria correta"
+1b84cabd-5bf7-4861-b058-ddbe5a428486,varricao,varricao,enviar,prefeitura,"válida, categoria correta"
+ae6396f6-9aad-43ad-a770-218088cc7af8,varricao,varricao,enviar,prefeitura,"válida, categoria correta"
+5d161c9a-156a-4cbb-9fbd-6e81fe07f041,varricao,varricao,enviar,prefeitura,"válida, categoria correta"
+5ba432b9-d35c-4353-992e-51369289292b,veiculo_abandonado,veiculo_abandonado,enviar,prefeitura,"válida, categoria correta"
+ab4d0425-ce3c-4ad5-9c44-1b9f83874130,veiculo_abandonado,veiculo_abandonado,enviar,prefeitura,"válida, categoria correta"
+9f6f9ff0-3306-49e1-b231-a5bab70a857d,veiculo_abandonado,veiculo_abandonado,enviar,prefeitura,"válida, categoria correta"
+236ba352-1998-4858-acde-bd45174e6708,alagamento,alagamento,enviar,defesa_civil,"válida, categoria correta"
+05325d2d-d91f-4d39-941c-a9f86bcc83b5,alagamento,alagamento,enviar,defesa_civil,"válida, categoria correta"
+b5301773-f341-4006-bffc-254391dfd6e7,alagamento,alagamento,enviar,defesa_civil,"válida, categoria correta"
+a96597e6-a231-4a8f-a2e8-1eb27161dd45,descarte_irregular,boca_de_lobo_entupida,revisao,,categoria_final não bate com a descrição
+f9d519e0-80c3-45e1-a2ae-d2e5dc61ce09,calcada_quebrada,arvore_poda_queda,revisao,,categoria_final não bate com a descrição
+1f7043b2-6589-4279-849a-5fd29c51e375,esgoto,arvore_poda_queda,revisao,,categoria_final não bate com a descrição
+96d62265-4f54-4c7b-bf6c-9b312c370c81,buraco_via,descarte_irregular,revisao,,categoria_final não bate com a descrição
+7c96a476-d322-4f2e-b0b7-d2c78947227c,arvore_sobre_fiacao,descarte_irregular,revisao,,categoria_final não bate com a descrição
+22bc8ff7-2cee-4d87-a874-c824e38edc09,iluminacao_publica,lixo_acumulado,revisao,,categoria_final não bate com a descrição
+37f94d8f-37ac-46a2-af2c-17783f043d59,boca_de_lobo_entupida,varricao,revisao,,categoria_final não bate com a descrição
+25e59255-3047-4bfe-9982-d5c27fb5248d,lixeira_publica,varricao,revisao,,categoria_final não bate com a descrição
+651e8b06-2f6e-47c3-8928-e5f918594b40,fiacao_telecom_solta,lixeira_publica,revisao,,categoria_final não bate com a descrição
+d1891236-ca5e-47db-b522-8e403cea3ecb,semaforo_defeito,esgoto,revisao,,categoria_final não bate com a descrição
+5f041ff3-8645-438d-bb66-b13d5d9a2294,semaforo_defeito,semaforo_defeito,revisao,,inválida: descrição vazia
+dcdf9fcd-c9d7-4985-88a7-a0df4afa6b9e,alagamento,alagamento,revisao,,inválida: descrição curta
+eaba1080-3a60-4d4a-b9cf-8dc164285d37,descarte_irregular,buraco,revisao,,inválida: categoria fora da base (id antigo do contrato)
+d593d657-61a3-4626-98f2-7054f5fc2e43,semaforo_defeito,semaforo_defeito,revisao,,inválida: prioridade fora de 1 a 5
+OC-123,lixeira_publica,lixeira_publica,revisao,,inválida: id não é UUID
+3255a97e-1e80-443c-84a4-f1bef262edad,veiculo_abandonado,veiculo_abandonado,revisao,,inválida: origem inválida
+36b8eb15-dcbd-457c-9423-048391a6f070,iluminacao_publica,iluminacao_publica,ignorar,prefeitura,já enviada
+50bcf1d1-29a4-4a14-b1d4-2f217dcde480,calcada_quebrada,calcada_quebrada,ignorar,proprietario_imovel,já enviada
+2ea48975-0bbd-4435-a36e-ea4e1d6d9876,buraco_via,buraco_via,ignorar,subprefeitura,já enviada
+99600f86-7548-4027-8814-817a88237f7f,arvore_sobre_fiacao,arvore_sobre_fiacao,ignorar,enel,já enviada
